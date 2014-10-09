@@ -4,7 +4,8 @@
   "description": "A watch plugin for Metalsmith",
   "main": "./lib/",
   "scripts": {
-    "test": "./node_modules/.bin/jshint ./lib/ ./test/ && ./node_modules/.bin/mocha --reporter spec"
+    "jshint": "./node_modules/.bin/jshint ./lib/ ./test/",
+    "test": "npm run jshint && ./node_modules/.bin/mocha --reporter spec"
   },
   "keywords": [
     "metalsmith",
@@ -21,26 +22,34 @@
   },
   "devDependencies": {
     "assert-dir-equal": "^1.0.1",
-    "jshint": "^2.5.2",
-    "metalsmith": "^0.9.0",
+    "jshint": "^2.5.6",
+    "metalsmith": "^1.0.1",
     "mkdirp": "^0.5.0",
-    "mocha": "^1.20.1",
+    "mocha": "^1.21.4",
     "rimraf": "^2.2.8"
   },
   "jshintConfig": {
-    "eqeqeq": true,
-    "immed": true,
-    "latedef": "nofunc",
-    "quotmark": "single",
-    "trailing": true,
-    "unused": true,
     "asi": true,
     "boss": true,
+    "eqeqeq": true,
     "expr": true,
+    "immed": true,
+    "latedef": "nofunc",
     "laxbreak": true,
     "laxcomma": true,
+    "loopfunc": true,
+    "newcap": true,
+    "node": true,
+    "predef": [
+      "beforeEach",
+      "describe",
+      "it"
+    ],
+    "quotmark": "single",
     "scripturl": true,
     "sub": true,
-    "loopfunc": true
+    "trailing": true,
+    "undef": true,
+    "unused": true
   }
 }
