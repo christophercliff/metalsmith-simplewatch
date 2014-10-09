@@ -10,6 +10,12 @@ A watch plugin for [Metalsmith][metalsmith].
 npm install metalsmith-simplewatch
 ```
 
+### Options
+
+- **`pattern`** `String pattern|Array<String> pattern`
+
+    A [pattern][multimatch] to match watched files. Default `**/*`.
+
 ## Usage
 
 Pair with [connect][connect] to create a Metalsmith development server.
