@@ -20,7 +20,7 @@ describe('metalsmith-simplewatch', function(){
     })
 
     it('should rebuild when a file is changed', function(done){
-        Metalsmith('test/fixtures/basic')
+        (new Metalsmith('test/fixtures/basic'))
             .use(watch())
             .build(function(err){
                 if (err) return done(err)
