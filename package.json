@@ -1,15 +1,17 @@
 {
   "name": "metalsmith-simplewatch",
   "version": "1.0.0",
-  "description": "A watch plugin for Metalsmith",
+  "description": "A development server for Metalsmith",
   "main": "./lib/",
   "scripts": {
-    "jshint": "./node_modules/.bin/jshint ./lib/ ./test/",
-    "test": "npm run jshint && ./node_modules/.bin/mocha --reporter spec"
+    "style": "./node_modules/.bin/crispy ./lib/ ./test/index.js",
+    "test": "npm run style && ./node_modules/.bin/mocha --reporter spec -r should --grep ''"
   },
   "keywords": [
     "metalsmith",
-    "watch"
+    "watch",
+    "dev",
+    "server"
   ],
   "author": "Christopher Cliff <ctcliff@gmail.com>",
   "repository": {
@@ -18,38 +20,19 @@
   },
   "license": "MIT",
   "dependencies": {
-    "gaze": "^0.6.4"
+    "connect": "^3.3.4",
+    "gaze": "^0.6.4",
+    "lodash": "^2.4.1",
+    "serve-static": "^1.8.0"
   },
   "devDependencies": {
     "assert-dir-equal": "^1.0.1",
-    "jshint": "^2.5.6",
-    "metalsmith": "^1.0.1",
+    "bluebird": "^2.6.4",
+    "crispy": "^3.1.1",
+    "metalsmith": "^0.9.0",
     "mkdirp": "^0.5.0",
-    "mocha": "^1.21.4",
-    "rimraf": "^2.2.8"
-  },
-  "jshintConfig": {
-    "asi": true,
-    "boss": true,
-    "eqeqeq": true,
-    "expr": true,
-    "immed": true,
-    "latedef": "nofunc",
-    "laxbreak": true,
-    "laxcomma": true,
-    "loopfunc": true,
-    "newcap": true,
-    "node": true,
-    "predef": [
-      "beforeEach",
-      "describe",
-      "it"
-    ],
-    "quotmark": "single",
-    "scripturl": true,
-    "sub": true,
-    "trailing": true,
-    "undef": true,
-    "unused": true
+    "mocha": "^1.20.1",
+    "rimraf": "^2.2.8",
+    "should": "^4.6.0"
   }
 }
