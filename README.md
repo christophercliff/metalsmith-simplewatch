@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/christophercliff/metalsmith-simplewatch.png?branch=master)](https://travis-ci.org/christophercliff/metalsmith-simplewatch)
 
-A watch plugin for [Metalsmith][metalsmith].
+A development server for [Metalsmith][metalsmith].
 
 ## Installation
 
@@ -10,30 +10,45 @@ A watch plugin for [Metalsmith][metalsmith].
 npm install metalsmith-simplewatch
 ```
 
-### Options
-
-- **`pattern`** `String pattern`
-
-    A [pattern][minimatch] to match watched files. Default `**/*`.
-
 ## Usage
 
-Pair with [connect][connect] to create a Metalsmith development server.
+The `watch` function starts a developments server and rebuilds when source files are modified.
 
 ```js
-var connect = require('connect')
-var path = require('path')
-var serveStatic = require('serve-static')
 var watch = require('metalsmith-simplewatch')
 
-Metalsmith(__dirname)
-  .use(watch())
-  .build()
+watch({
+  buildFn: build,
+  buildPath: path.resolve(__dirname, './build/'),
+  srcPath: path.resolve(__dirname, './src/'),
+})
 
-connect()
-  .use(serveStatic(path.resolve(__dirname, './build/')))
-  .listen(8000)
+function build() {
+  Metalsmith().build()
+}
 ```
+
+### Options
+
+- **`buildFn`** `Function`
+
+    The build function. Will be invoked every time a watched file is modified. Required.
+
+- **`buildPath`** `String`
+
+    The absolute path to your build directory. Required.
+
+- **`pattern`** `String|Array<String>`
+
+    A [pattern][multimatch] to filter source files. Default `'**/*'`.
+
+- **`port`** `Number`
+
+    The port for the development server to listen on. Default `8000`.
+
+- **`srcPath`** `String`
+
+    The absolute path to your source directory. Serves as the root watch directory. Required.
 
 ## Tests
 
